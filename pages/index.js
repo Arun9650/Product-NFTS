@@ -16,13 +16,13 @@ export default function Home({ products }) {
   // console.log("data",JSON.parse(localStorage.getItem('dataKey')));
 
   useEffect(() => {
-    console.log("use effect called");
+    // console.log("use effect called");
     const getdata = async () => {
       localStorage.setItem("dataKey", JSON.stringify(products));
      const items = JSON.parse(localStorage.getItem("dataKey"));
      if (items) {
       setDatakey(items);
-      console.log("items")
+      // console.log("items")
     }
     }
 
@@ -62,7 +62,7 @@ export default function Home({ products }) {
                   {" "}
                 </ProductItem>
 
-                {console.log("data coming from local host ", item._id)}
+                {/* {console.log("data coming from local host ", item._id)} */}
               </>
             ))
           : products.map((item) => (
@@ -75,7 +75,7 @@ export default function Home({ products }) {
                   {" "}
                 </ProductItem>
 
-                {console.log("data coming from the mongo", item._id)}
+                {/* {console.log("data coming from the mongo", item._id)} */}
               </>
             ))}
       </div>
@@ -101,7 +101,7 @@ export default function Home({ products }) {
 export async function getStaticProps(context) {
   await db.connect();
   const products = await Product.find().lean();
-  console.log("arun prodcuts ", products);
+  // console.log("arun prodcuts ", products);
 
   return {
     props: {

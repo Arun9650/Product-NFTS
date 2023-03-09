@@ -54,10 +54,10 @@ function CartScreen() {
            const tx =  await nftContract.mint(url,{value: ethers.utils.parseEther(cartItemPrice)});
            toast.info('Your NFT is Minting...');
           
-            console.log("Your nft is minting...")
+            // console.log("Your nft is minting...")
             await tx.wait();
 
-            console.log("transcation error",tx);    
+            // console.log("transcation error",tx);    
             toast.success("congratulations ,Your NFT Is Minted ")
 
 
@@ -68,18 +68,18 @@ function CartScreen() {
     }
 
 
-    console.log("cartItem",cartItem)
+
     const storeNFT = async () => {
         // const name = cartItem.map((item) => item.name)
         
         const discription  = cartItem[0].discription ? cartItem[0].discription : "something new  is  discription";
-        console.log(discription)
+        // console.log(discription)
         let a = 0;
 
         for (let x of cartItem) {
 
             a = 1 + a;
-            console.log("i don't know",x, a);
+            // console.log("i don't know",x, a);
 
 
 
@@ -99,13 +99,13 @@ function CartScreen() {
                     throw new Error(`error fetching image: [${FatchedImage.statusCode}]: ${FatchedImage.status}`)
                 }
 
-                    console.log("fatched",FatchedImage) // return a promise
+                    // console.log("fatched",FatchedImage) // return a promise
                 return FatchedImage.blob();
 
 
             }
             const image = await getImage();
-            console.log("image",image)
+            // console.log("image",image)
              const nameImg = imageURL.slice(75)
 
             const nft = {
@@ -118,13 +118,13 @@ function CartScreen() {
             const client = new NFTStorage({ token: api })
             const metadata = await client.store(nft);
 
-            console.log('NFtT data stored!')
-            // console.log(image)
-            console.log("Meta Data url ", metadata.url)
+            // console.log('NFtT data stored!')
+            // // console.log(image)
+            // console.log("Meta Data url ", metadata.url)
 
 
             const url = baseurl +  metadata.url.slice(7);
-            console.log("url", url);
+            // console.log("url", url);
 
             Mint(url );
 
@@ -188,9 +188,9 @@ function CartScreen() {
             const contract = new Contract( WHITELIST_CONTRACT_ADDRESS, abi,signer)
         
           
-            console.log(contract)
+            // console.log(contract)
             const price = await contract.getLatestPrice();
-            console.log(price)
+            // console.log(price)
             const decimals = await contract.getDecimals();
 
 

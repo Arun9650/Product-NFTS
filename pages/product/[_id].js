@@ -13,7 +13,7 @@ import { HiArrowLeft } from 'react-icons/hi';
 function ProductScreen(props) {
     const {product} = props;
 
-    console.log("product",product)
+    // console.log("product",product)
 
     const {state, dispatch} = useContext(AppWrapper)
 
@@ -29,7 +29,7 @@ function ProductScreen(props) {
 
         const  {data}  = await axios.get(`/api/${product._id}`);
         
-        {console.log("data file : [_id{",data)}
+        // {console.log("data file : [_id{",data)}
 
         if (data.countInStock < quantity) {
           return toast.error('Sorry. Product is out of stock');
@@ -107,7 +107,7 @@ export async function getServerSideProps(context) {
     const {params} = context;
     const {_id} = params;
     await db.connect();
-    console.log("params",params)
+    // console.log("params",params)
     
     const product = await Product.findOne({_id}).lean();
     // await db.disconnect();

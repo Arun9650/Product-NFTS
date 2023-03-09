@@ -33,9 +33,9 @@ function Nftview() {
     setLink([]);
     try {
       const nftContract = new Contract(WHITELIST_CONTRACT_ADDRESS, abi, signer);
-      console.log(nftContract);
+     
       const token = await nftContract.getAllTokens();
-      console.log("this is a token ", token);
+      // console.log("this is a token ", token);
 
       token.forEach((nft) => {
         fetch(nft.uri)
@@ -59,7 +59,7 @@ function Nftview() {
     
   }, [isConnected]);
 
-  
+ 
   
 
 

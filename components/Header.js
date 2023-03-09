@@ -24,7 +24,7 @@ export default function Header() {
 
   const toggleLinks = () => {
     setShowLinks(!showLinks);
-    console.log("showLinks")
+    // console.log("showLinks")
   };
 
 
