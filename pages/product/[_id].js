@@ -72,7 +72,7 @@ function ProductScreen(props) {
             <div>Rating : {product.rating ? product.rating : "Not Found"}</div>
             <div className=''>Review: {product.numReviews}</div>
             <div>Availability: {product.countInStock}</div>
-            <Button className="font-Poppins font-normal" onClick={addtocartHandler}>Add to cart</Button>
+            <Button className="font-Poppins bg-[#21248A] font-normal" onClick={addtocartHandler}>Add to cart</Button>
         </div>
     </div>
 
