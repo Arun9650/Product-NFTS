@@ -103,48 +103,48 @@ export default ProductScreen
 
 
 
-export async function getServerSideProps(context) {
-    const {params} = context;
-    const {_id} = params;
-    await db.connect();
-    // console.log("params",params)
+// export async function getServerSideProps(context) {
+//     const {params} = context;
+//     const {_id} = params;
+//     await db.connect();
+//     // console.log("params",params)
     
-    const product = await Product.findOne({_id}).lean();
-    // await db.disconnect();
+//     const product = await Product.findOne({_id}).lean();
+//     // await db.disconnect();
+
+//     return {
+//         props:{
+//             product: product ? JSON.parse(JSON.stringify(product)) :null,
+//         }
+//     }
+// }
+
+
+export async function getStaticPaths() {
+    // Return a list of possible value for id
+    await db.connect();
+    const products = await Product.find({}).lean();
+    await db.disconnect();
+    return {
+        paths: products.map((product) => ({
+            params: { _id: product._id.toString() },
+        })),
+        fallback: false,
+    };
+  }
+
+  export async function getStaticProps({ params }) {
+    // Fetch necessary data for the blog post using params.id
+   const { _id } = params;
+    await db.connect();
+
+    const product = await Product.findOne({ _id }).lean();
+    await db.disconnect();
 
     return {
-        props:{
-            product: product ? JSON.parse(JSON.stringify(product)) :null,
-        }
-    }
-}
+        props: {
+            product: product ? JSON.parse(JSON.stringify(product)) : null,
+        },
+    };
 
-
-// export async function getStaticPaths() {
-//     // Return a list of possible value for id
-//     await db.connect();
-//     const products = await Product.find({}).lean();
-//     await db.disconnect();
-//     return {
-//         paths: products.map((product) => ({
-//             params: { _id: product._id.toString() },
-//         })),
-//         fallback: false,
-//     };
-//   }
-
-//   export async function getStaticProps({ params }) {
-//     // Fetch necessary data for the blog post using params.id
-//    const { _id } = params;
-//     await db.connect();
-
-//     const product = await Product.findOne({ _id }).lean();
-//     await db.disconnect();
-
-//     return {
-//         props: {
-//             product: product ? JSON.parse(JSON.stringify(product)) : null,
-//         },
-//     };
-
-//   }
+  }
